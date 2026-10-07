@@ -1,0 +1,41 @@
+# Environment
+.env
+.env.local
+.env.*.local
+backend/.env
+
+# Dependencies
+node_modules/
+backend/.venv/
+backend/venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Build
+dist/
+dist-ssr/
+*.local
+
+# Logs / OS
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Coverage / test
+coverage/
+htmlcov/
+.coverage
+
+# Alembic local
+*.db
+*.sqlite3

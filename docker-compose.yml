@@ -1,0 +1,32 @@
+# Local development stack only — not a full production orchestrator.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: leadflow
+    ports:
+      - "5432:5432"
+    volumes:
+      - leadflow_pg:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+    environment:
+      APP_ENV: development
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@db:5432/leadflow
+      FRONTEND_URL: http://localhost:5173
+      SECRET_KEY: local-dev-only-not-for-production
+      EMAIL_SEND_ENABLED: "false"
+      EMAIL_TEST_MODE: "true"
+      GOOGLE_PLACES_MOCK: "true"
+      AI_PROVIDER: mock
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  leadflow_pg:
